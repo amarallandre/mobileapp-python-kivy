@@ -1,0 +1,631 @@
+ScreenManager:
+    SplashScreen:
+    LoginScreen:
+    ForgetPassScreen:
+    RegisterScreen:
+    DashboardScreen:
+    AboutUserScreen:
+    ChangeAboutScreen:
+    PrecheckScreen:
+    CheckinScreen:
+    CheckoutScreen:
+    MedsScreen:
+    ActivitiesScreen:
+    InfoScreen:
+    ScheduleScreen:
+    TakeoffScreen:
+    PacientScreen:
+    RegisterPacients:
+    HourScreen:
+    DutyScreen:
+    VerifyMedsScreen:
+    ControlMedsScreen:
+
+<SplashScreen>:
+    name: 'splash'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        Image:
+            source: "images/docs2.png"
+            size_hint: .50, .50
+            pos_hint: {"center_x": .54, "center_y": .6}
+            canvas.before:
+                Color:
+                    rgb: 1, .85, .825, 1
+
+        MDIconButton:
+            icon: "chevron-right"
+            user_font_size: "35sp"
+            pos_hint: {"center_x": .5, "center_y": .12}
+            on_press: app.root.current = 'login'
+
+        MDLabel:
+            text: "Sistema HS"
+            pos_hint: {"center_x": .5, "center_y": .28}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"35sp"
+            font_name: "Poppins-SemiBold.ttf"
+
+        MDLabel:
+            text: "Especializado em Sistema de Saúde"
+            pos_hint: {"center_x": .5, "center_y": .21}
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"13sp"
+            font_name: "Poppins-Regular.ttf"
+
+<LoginScreen>:
+    name: 'login'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        Image:
+            source: "images/doc3.png"
+            size_hint: .3, .3
+            pos_hint: {"center_x": .25, "center_y": .86}
+
+        MDLabel:
+            text: "B e m - v i n d o !"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .73}
+
+        MDLabel:
+            text: "Logue para continuar"
+            font_size: "20sp"
+            font_name: "Poppins-Medium.ttf"
+            color: 120/255, 120/255, 120/255, 1
+            pos_hint: {"center_x": .6, "center_y": .66}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "14.5sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .055}
+            id: lblogin
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .55}
+            MDLabel:
+                text:"CPF"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+            TextInput:
+                id: cpf
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image:
+                source: "images/cpf.png"
+                pos_hint: {"center_x": .96, "center_y": .55}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .4}
+            MDLabel:
+                text:"Senha"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+            TextInput:
+                id: senha
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image:
+                source: "images/key.png"
+                pos_hint: {"center_x": .96, "center_y": .55}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        Button:
+            text: "Entrar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .27}
+            on_release:
+                root.login_auth(cpf.text, senha.text)
+
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+        Button:
+            text: "Cadastre-se"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .18}
+            on_press: app.root.current = 'register'
+            canvas.before:
+                Color:
+                    rgb: 50/255, 66/255, 63/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+
+        MDTextButton:
+            text: "Esqueci minha senha"
+            font_size: "15sp"
+            pos_hint: {"center_x": .5, "center_y": .11}
+            halign: "center"
+            color: 120/255, 120/255, 120/255, 1
+            on_release: app.root.current = 'esqueci'
+
+<ForgetPassScreen>:
+    name: 'esqueci'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'login'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: "Esqueceu a senha?"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .15}
+            id: lbredfsenha
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel:
+                text:"CPF"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id : cpf
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image:
+                source: "images/cpf.png"
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .55, .55
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                text:"Nova senha"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3}
+            TextInput:
+                id: new_password
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 2.85}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image:
+                source: "images/key.png"
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        Button:
+            text: "Redefinir senha"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .35}
+            on_release: root.esqueciSenha(cpf.text, novasenha.text)
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+
+<RegisterScreen>:
+    name: 'register'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'login'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: "Cadastre-se"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}
+            id: lbregister
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel:
+                text:"Nome"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id : nome
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image:
+                source: "images/user.png"
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                text:"CPF"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3}
+            TextInput:
+                id: cpf
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 2.85}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image:
+                source: "images/cpf.png"
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                text:"Senha"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+            TextInput:
+                id: senha
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image:
+                source: "images/key.png"
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        Button:
+            text: "Cadastrar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.sign_in(nome.text, cpf.text, senha.text)
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+
+<DashboardScreen>:
+    name: 'dashboard'
+    MDBoxLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        orientation:'vertical'
+        MDIconButton:
+            icon:"images/userconf.png"
+            size_hint: .3, .15
+            pos_hint: {"center_x": .22, "center_y": .95}
+            on_release: app.root.current = 'aboutuser'
+
+        MDBoxLayout:
+            size_hint_y:.25
+            padding:dp(25)
+            MDBoxLayout:
+                MDLabel:
+                    text:" "
+                    halign: "center"
+                    font_size: "22sp"
+                    font_name: "Poppins-SemiBold.ttf"
+                    pos_hint: {"center_x": .5, "center_y": .45}
+                    id: lbdashboard
+
+
+        MDGridLayout:
+            size_hint_y:.75
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'vertical'
+                on_release: app.root.current = 'precheck'
+                Image:
+                    source: "images/calendar4.png"
+                MDLabel:
+                    halign:"center"
+                    text:"Agendamento"
+                    font_size: "15sp"
+                    font_name: "Poppins-Medium.ttf"
+
+
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'vertical'
+                Image:
+                    source: "images/meds3.png"
+                MDLabel:
+                    halign:"center"
+                    text:"Estoque"
+                    font_size: "15sp"
+                    font_name: "Poppins-Medium.ttf"
+
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'vertical'
+                Image:
+                    source: "images/register.png"
+                MDLabel:
+                    halign:"center"
+                    text:"Cadastro"
+                    font_size: "15sp"
+                    font_name: "Poppins-Medium.ttf"
+
+
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'vertical'
+                Image:
+                    source: "images/infos.png"
+                MDLabel:
+                    halign:"center"
+                    text:"Informações"
+                    font_size: "15sp"
+                    font_name: "Poppins-Medium.ttf"
+
+
+
+
+
+
+
+<AboutUserScreen>:
+    name: 'aboutuser'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: "Sobre o usuário"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .88}
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+
+
+            MDLabel:
+                text:"Nome"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            Image:
+                source: "images/user.png"
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+
+            MDLabel:
+                id: nomefuncionario
+                text: " "
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.1}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+
+            MDLabel:
+                text:"CPF"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3}
+
+            Image:
+                source: "images/cpf.png"
+                pos_hint: {"center_x": .96, "center_y": 3.05}
+                size_hint: .7, .7
+
+
+            MDLabel:
+                id: cpffuncionario
+                text: " "
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .5, "center_y": 2.5}
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                text:"ID"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+            MDLabel:
+                text: " "
+                id: idfuncionario
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .3}
+            Image:
+                source: "images/id.png"
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+
+        Button:
+            text: "Editar Informações"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .15}
+            on_release: app.root.current = 'change'
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+
+
+<PrecheckScreen>:
+    name: 'precheck'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
