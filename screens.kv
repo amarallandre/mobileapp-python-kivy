@@ -1097,6 +1097,301 @@ ScreenManager:
             font_name: "Poppins-Regular.ttf"
             pos_hint: {"center_x": .615, "center_y": .949}
 
+
+        Button:
+            text: "Agendar consulta"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .085
+            pos_hint: {"center_x": .5, "center_y": .6}
+            on_press: app.root.current = 'checkin'
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [6]
+        Button:
+            text: "Agendar retirada"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .085
+            pos_hint: {"center_x": .5, "center_y": .49}
+            on_press: app.root.current = 'checkout'
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [6]
+
+<CheckinScreen>:
+    name: 'checkin'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'precheck'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-Medium.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}
+            id: lbcheckin
+
+
+        MDLabel:
+            text: "Agendar consulta"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel:
+                text:"Especialidade"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: especialidade
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image:
+                source: "images/especialidade.png"
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDIconButton:
+                icon: "chevron-down"
+                user_font_size: "35sp"
+                pos_hint: {"center_x": .96, "center_y": 3}
+                on_release: root.data()
+
+            MDLabel:
+                text:"Data"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3}
+
+            MDLabel:
+                id: data
+                text: " "
+                font_size: "12sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 2.9}
+
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                text:"ID do paciente"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+            TextInput:
+                id: paciente
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image:
+                source: "images/id.png"
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        Button:
+            text: "Agendar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.consulta(especialidade.text, data.text, paciente.text)
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+
+<CheckoutScreen>:
+    name: 'checkout'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_release: app.root.current = 'precheck'
+
+        MDLabel:
+            text: "Voltar"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "Poppins-Medium.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}
+            id: lbcheckout
+
+        MDLabel:
+            text: "Agendar retirada"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}
+            MDLabel:
+                text:"Medicamento"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85}
+            TextInput:
+                id: med
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image:
+                source: "images/meds2.png"
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDIconButton:
+                icon: "chevron-down"
+                user_font_size: "35sp"
+                pos_hint: {"center_x": .96, "center_y": 3}
+                on_release: root.data()
+
+            MDLabel:
+                text:"Data"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3}
+
+            MDLabel:
+                id: data
+                text: " "
+                font_size: "12sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": 2.9}
+
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}
+            MDLabel:
+                text:"ID do paciente"
+                font_size: "14sp"
+                font_name: "Poppins-Medium.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9}
+            TextInput:
+                id: paciente2
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4}
+                background_color: 0, 0, 0, 0
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image:
+                source: "images/id.png"
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .6, .6
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+        Button:
+            text: "Agendar"
+            background_color: 0, 0, 0, 0
+            font_name: "Poppins-Medium.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release: root.retirada(med.text, data.text, paciente2.text)
+            canvas.before:
+                Color:
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]
+
+
 <DutyScreen>:
     name: 'duty'
     MDFloatLayout:
@@ -1121,7 +1416,7 @@ ScreenManager:
             size_hint: .79, .085
             pos_hint: {"center_x": .5, "center_y": .1}
             on_release:
-                root.load_data()
+                root.on_remove_duty_button_release()
 
             canvas.before:
                 Color:
